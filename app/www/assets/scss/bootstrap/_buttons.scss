@@ -1,0 +1,121 @@
+@each $color, $value in $theme-colors {
+	.btn-#{$color} {
+		@if $color == "light" {
+			@include button-variant(
+				rgba($dark, 0.075),
+				transparent,
+				$color: $dark,
+				$hover-background: rgba($dark, 0.125),
+				$hover-border: transparent,
+				$hover-color: $dark,
+				$active-background: rgba($dark, 0.175),
+				$active-border: transparent,
+				$active-color: $dark,
+			);
+			--#{$prefix}btn-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.075);
+			--#{$prefix}btn-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-hover-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.125);
+			--#{$prefix}btn-hover-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-active-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.175);
+			--#{$prefix}btn-active-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-focus-shadow-rgba: var(--#{$prefix}emphasis-color-rgb);
+		} @else if $color == "dark" {
+			@include button-variant(
+				rgba($dark, 0.75),
+				transparent,
+				$color: $light,
+				$hover-background: rgba($dark, 0.85),
+				$hover-border: transparent,
+				$hover-color: $light,
+				$active-background: rgba($dark, 0.95),
+				$active-border: transparent,
+				$active-color: $light,
+			);
+			--#{$prefix}btn-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.75);
+			--#{$prefix}btn-color: var(--#{$prefix}body-bg);
+			--#{$prefix}btn-hover-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.85);
+			--#{$prefix}btn-hover-color: var(--#{$prefix}body-bg);
+			--#{$prefix}btn-active-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.95);
+			--#{$prefix}btn-active-color: var(--#{$prefix}body-bg);
+			--#{$prefix}btn-focus-shadow-rgba: var(--#{$prefix}emphasis-color-rgb);
+		} @else {
+			@include button-variant(
+				rgba($value, 0.2),
+				transparent,
+				$color: mix($dark, $value, 75%),
+				$hover-background: rgba($value, 0.3),
+				$hover-border: transparent,
+				$hover-color: mix($black, $value, 85%),
+				$active-background: rgba($value, 0.4),
+				$active-border: transparent,
+				$active-color: mix($black, $value, 85%),
+			);
+			--#{$prefix}btn-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-hover-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-active-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-focus-shadow-rgba: #{to-rgb(mix($dark, $value, 33%))};
+		}
+		border-width: 0;
+	}
+
+	.btn-transparent-#{$color} {
+		@if $color == "light" {
+			@include button-variant(
+				transparent,
+				transparent,
+				$color: $dark,
+				$hover-background: rgba($dark, 0.075),
+				$hover-border: transparent,
+				$hover-color: $dark,
+				$active-background: rgba($dark, 0.125),
+				$active-border: transparent,
+				$active-color: $dark,
+			);
+			--#{$prefix}btn-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-hover-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.075);
+			--#{$prefix}btn-hover-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-active-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.125);
+			--#{$prefix}btn-active-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}emphasis-color-rgb);
+		} @else if $color == "dark" {
+			@include button-variant(
+				transparent,
+				transparent,
+				$color: $dark,
+				$hover-background: rgba($dark, 0.75),
+				$hover-border: transparent,
+				$hover-color: $light,
+				$active-background: rgba($dark, 0.85),
+				$active-border: transparent,
+				$active-color: $light,
+			);
+			--#{$prefix}btn-color: var(--#{$prefix}body-bg);
+			--#{$prefix}btn-hover-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.75);
+			--#{$prefix}btn-hover-color: var(--#{$prefix}body-bg);
+			--#{$prefix}btn-active-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.85);
+			--#{$prefix}btn-active-color: var(--#{$prefix}body-bg);
+			--#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}emphasis-color-rgb);
+		} @else {
+			@include button-variant(
+				transparent,
+				transparent,
+				$color: $dark,
+				$hover-background: rgba($value, 0.2),
+				$hover-border: transparent,
+				$hover-color: mix($black, $value, 85%),
+				$active-background: rgba($value, 0.3),
+				$active-border: transparent,
+				$active-color: mix($black, $value, 85%),
+			);
+			--#{$prefix}btn-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-hover-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-active-color: var(--#{$prefix}emphasis-color);
+			--#{$prefix}btn-focus-shadow-rgb: #{to-rgb(mix($dark, $value, 25%))};
+		}
+		border-width: 0;
+	}
+}
+
+.btn-xs {
+  @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $btn-font-size-xs, $btn-border-radius-xs);
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock %} — Kickstarter</title>
+	<link rel="icon" href="/assets/img/touch-icon.png">
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/style.min.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+	<!-- Scripts -->
+	<script type="text/javascript" src="/assets/js/ui.js"></script>
+
+</head>
+<body>
+
+	<!-- Header: start -->
+	<header class="ks-header">
+		<nav class="ks-header__nav ks-header__nav--left">
+			<ul class="ks-header__nav-list">
+				<li class="ks-header__nav-item">
+					<a href="/templates/index.html" class="ks-header__nav-link">Home</a>
+				</li>
+				<li class="ks-header__nav-item">
+					<a href="/templates/prediction.html" class="ks-header__nav-link">Prediction</a>
+				</li>
+			</ul>
+		</nav>
+		<a href="/templates/index.html" class="ks-header__logo" tabindex="-1">
+			<img src="/assets/img/logo.svg" alt="Kickstarter">
+		</a>
+		<nav class="ks-header__nav ks-header__nav--right">
+			<ul class="ks-header__nav-list">
+				<li class="ks-header__nav-item">
+					<a href="/templates/projects.html" class="ks-header__nav-link">Projects</a>
+				</li>
+				<li class="ks-header__nav-item">
+					<a href="/templates/categories.html" class="ks-header__nav-link">Categories</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="ks-header__hamburger">
+			<button class="ks-header__hamburger-btn" onclick="ks.ui.sidebar.toggle()">
+				<span class="ks-header__hamburger-btn__line"></span>
+				<span class="ks-header__hamburger-btn__line"></span>
+				<span class="ks-header__hamburger-btn__line"></span>
+			</button>
+		</div>
+	</header>
+	<!-- Header: end -->
+
+	<!-- Sidebar: start -->
+	<div class="ks-sidebar">
+		<nav class="ks-sidebar__nav">
+			<ul class="ks-sidebar__nav-list">
+				<li class="ks-sidebar__nav-item">
+					<a href="/templates/index.html" class="ks-sidebar__nav-link">Home</a>
+				</li>
+				<li class="ks-sidebar__nav-item">
+					<a href="/templates/prediction.html" class="ks-sidebar__nav-link">Prediction</a>
+				</li>
+				<li class="ks-sidebar__nav-item">
+					<a href="/templates/projects.html" class="ks-sidebar__nav-link">Projects</a>
+				</li>
+				<li class="ks-sidebar__nav-item">
+					<a href="/templates/categories.html" class="ks-sidebar__nav-link">Categories</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Main: start -->
+	<main class="ks-main">
+		{% block content %}{% endblock %}
+	</main>
+	<!-- Main: end -->
+
+</body>
+</html>

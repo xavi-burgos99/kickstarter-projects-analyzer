@@ -1,0 +1,79 @@
+$prefix: dz-;
+
+$editor-button-height: 2.25rem;
+$editor-button-height-collapsed: 1.75rem;
+
+body:not(.no-interface) {
+	padding: $spacer;
+	transition: padding-left $transition-duration $transition-timing, padding-bottom $transition-duration $transition-timing;
+
+	.full-screen {
+		width: 100%;
+		height: 100dvh;
+	}
+
+	.editor-button {
+		@extend .btn;
+		@extend .btn-dark;
+		position: fixed;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		gap: $spacer * 0.5;
+		bottom: $spacer;
+		right: $spacer;
+		height: $editor-button-height;
+		padding: $spacer * 0.375 $spacer;
+		border-radius: $spacer * 10;
+		background-color: rgba(lighten($dark, 5%), 0.85);
+		color: $white;
+		font-size: $font-size-base;
+		backdrop-filter: blur($spacer);
+		z-index: 1001;
+		box-shadow: $box-shadow;
+		line-height: 1;
+
+		&:hover,
+		&:focus {
+			background-color: rgba(darken($dark, 5%), 0.85);
+			color: $white;
+		}
+
+		@include media-breakpoint-down(sm) {
+			right: 50%;
+			height: $editor-button-height-collapsed;
+			padding: $spacer * 0.25 $spacer * 0.75;
+			font-size: $font-size-sm;
+			transform: translateX(50%);
+		}
+	}
+
+	&.dz-editor-active {
+		.editor-button {
+			display: flex;
+		}
+	}
+
+	&.dz-editor-open {
+		.editor-button {
+			@extend .btn-light;
+			background-color: rgba(lighten($light, 5%), 0.85);
+			color: $dark;
+
+			&:hover,
+			&:focus {
+				background-color: rgba(darken($light, 5%), 0.85);
+				color: $dark;
+			}
+		}
+	}
+}
+
+@import "admin/ui/ui";
+
+@import "admin/header";
+@import "admin/menu";
+@import "admin/editor";
+@import "admin/contextmenu";
+@import "admin/file-manager";
+@import "admin/welcome";

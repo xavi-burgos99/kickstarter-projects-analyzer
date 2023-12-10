@@ -1,0 +1,110 @@
+:root {
+	--ks-sidebar-bg: #{$white};
+	--ks-sidebar-color: var(--bs-gray-700);
+}
+
+[data-bs-theme="dark"] {
+	--ks-sidebar-bg: #{$dark};
+	--ks-sidebar-color: var(--bs-gray-300);
+}
+
+$ks-sidebar-bg: var(--ks-sidebar-bg) !default;
+$ks-sidebar-max-width: 400px !default;
+$ks-sidebar-padding-y: 1.25rem !default;
+$ks-sidebar-padding-x: 1.25rem !default;
+$ks-sidebar-gap: 1rem !default;
+$ks-sidebar-nav-list-gap: 0.5rem !default;
+$ks-sidebar-nav-link-padding-x: 0.75rem !default;
+$ks-sidebar-nav-link-padding-y: 0.25rem !default;
+$ks-sidebar-nav-link-gap: 0.25rem !default;
+$ks-sidebar-nav-link-color: var(--ks-sidebar-color) !default;
+
+.ks-sidebar {
+	position: fixed;
+	top: $ks-header-height;
+	right: -100%;
+	display: none;
+	width: 100%;
+	max-width: $ks-sidebar-max-width;
+	height: calc(100dvh - #{$ks-header-height});
+	padding: $ks-sidebar-padding-y $ks-sidebar-padding-x;
+	background-color: $ks-sidebar-bg;
+	visibility: hidden;
+	z-index: 1020;
+	transition: right $transition-slow, visibility $transition-slow;
+
+	.ks-sidebar__nav {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.ks-sidebar__nav-list {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: $ks-sidebar-nav-list-gap;
+
+		.ks-sidebar__nav-item {
+			display: flex;
+			width: 100%;
+
+			.ks-sidebar__nav-link {
+				@extend .btn;
+				@extend .btn-transparent-primary;
+				text-align: left;
+				width: 100%;
+				color: $ks-sidebar-nav-link-color;
+				--#{$prefix}btn-padding-y: #{$ks-sidebar-nav-link-padding-y};
+				--#{$prefix}btn-padding-x: #{$ks-sidebar-nav-link-padding-x};
+
+				&.active {
+					@extend .btn-transparent-primary;
+				}
+
+				&.ks-sidebar__nav-link--danger {
+					@extend .btn-transparent-danger;
+				}
+			}
+		}
+	}
+}
+
+.ks-sidebar__backdrop {
+	position: fixed;
+	top: $ks-header-height;
+	display: none;
+	right: 0;
+	width: 100%;
+	height: calc(100dvh - #{$ks-header-height});
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1020;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity $transition-slow, visibility $transition-slow;
+}
+
+@include media-breakpoint-down(md) {
+	.ks-sidebar {
+		display: flex;
+	}
+
+	.ks-sidebar__backdrop {
+		display: block;
+	}
+}
+
+body.ks-sidebar--open {
+	.ks-sidebar {
+		right: 0;
+		visibility: visible;
+	}
+
+	.ks-sidebar__backdrop {
+		opacity: 1;
+		visibility: visible;
+	}
+}
