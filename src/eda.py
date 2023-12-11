@@ -3,11 +3,11 @@
 import pandas as pd
 import os
 
-def get_dataframe(filename):
+def get_dataframe(csv_path):
 	"""Get dataframe from a CSV file
 
 	Args:
-		filename (string): The path to the CSV file
+		csv_path (string): The path to the CSV file
 
 	Raises:
 		ValueError: The file is not a CSV
@@ -16,11 +16,12 @@ def get_dataframe(filename):
 	Returns:
 		pd.DataFrame: The dataframe from the CSV file
 	"""
-	if not filename.endswith(".csv"):
+	if not csv_path.endswith(".csv"):
 		raise ValueError("File is not a CSV")
-	if not os.path.exists(filename):
-		raise FileNotFoundError("File not found")
-	return pd.read_csv(filename)
+	path = os.path.join(os.getcwd(), csv_path)
+	if not os.path.exists(path):
+		raise FileNotFoundError("File does not exist")
+	return pd.read_csv(path, encoding="cp1252")
 
 def get_nans(df):
 	"""Get a list of columns with NaN columns
@@ -36,3 +37,22 @@ def get_nans(df):
 		nans_list.append(df[col].isna().sum() / len(df))
 	return nans_list
 
+def print_nans(df, column, rows=5):
+	"""Print the NaN rows of a column
+
+	Args:
+		df (pd.DataFrame): The dataframe to check
+		column (string): The column to check
+		rows (int, optional): The number of rows to print. Defaults to 5.
+	"""
+	print(df[df[column].isna()].head(rows))
+ 
+def print_non_nans(df, column, rows=5):
+	"""Print the non-NaN rows of a column
+
+	Args:
+		df (pd.DataFrame): The dataframe to check
+		column (string): The column to check
+		rows (int, optional): The number of rows to print. Defaults to 5.
+	"""
+	print(df[df[column].notna()].head(rows))

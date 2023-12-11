@@ -15,16 +15,6 @@ def remove_nans(df, threshold=0.5):
 	nans_list = eda.get_df_nans(df)
 	return df.drop(df.columns[nans_list > threshold], axis=1)
 
-def print_nans(df, column, rows=5):
-	"""Print the NaN rows of a column
-
-	Args:
-		df (pd.DataFrame): The dataframe to check
-		column (string): The column to check
-		rows (int, optional): The number of rows to print. Defaults to 5.
-	"""
-	print(df[df[column].isna()].head(rows))
-
 def remove_duplicates(df):
 	"""Remove duplicated rows from a dataframe
 
