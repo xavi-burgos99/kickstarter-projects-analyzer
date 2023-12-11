@@ -1,0 +1,52 @@
+:root {
+	--ks-footer-bg: #{$white};
+	--ks-footer-color: #{$gray-700};
+	--ks-footer-border-color: #{$gray-200};
+}
+
+[data-bs-theme="dark"] {
+	--ks-footer-bg: #{$black};
+	--ks-footer-color: #{$gray-300};
+	--ks-footer-border-color: #{$gray-800};
+}
+
+$ks-footer-bg: var(--ks-footer-bg) !default;
+$ks-footer-color: var(--ks-footer-color) !default;
+$ks-footer-height: 4rem !default;
+$ks-footer-height-sm: 5rem !default;
+$ks-footer-padding-y: 1.25rem !default;
+$ks-footer-padding-x: 1.25rem !default;
+$ks-footer-border-width: $border-width !default;
+$ks-footer-border-color: var(--ks-footer-border-color) !default;
+$ks-footer-font-size: 0.875rem !default;
+
+.ks-footer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	padding: $ks-footer-padding-y $ks-footer-padding-x;
+	border-top: $ks-footer-border-width solid $ks-footer-border-color;
+	background-color: $ks-footer-bg;
+	color: $ks-footer-color;
+	text-align: left;
+
+	.ks-footer__copy {
+		margin-bottom: 0;
+		font-size: $ks-footer-font-size;
+	}
+}
+
+@include media-breakpoint-down(lg) {
+	.ks-footer {
+		justify-content: center;
+		text-align: center;
+	}
+}
+
+@include media-breakpoint-down(sm) {
+	.ks-footer {
+		height: $ks-footer-height-sm;
+	}
+}

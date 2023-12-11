@@ -1,0 +1,51 @@
+:root {
+	--ks-banner-bg: #{$primary};
+	--ks-banner-color: #{$white};
+}
+
+[data-bs-theme="dark"] {
+	--ks-banner-bg: #{$primary};
+	--ks-banner-color: #{$white};
+}
+
+$ks-banner-bg: var(--ks-banner-bg) !default;
+$ks-banner-color: var(--ks-banner-color) !default;
+$ks-banner-padding-y: 4rem !default;
+$ks-banner-padding-x: 1.25rem !default;
+
+.ks-banner {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: $ks-banner-padding-y $ks-banner-padding-x;
+	color: $ks-banner-color;
+	background-color: $ks-banner-bg;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-align: center;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $ks-banner-bg;
+		opacity: 0.8;
+		z-index: 0;
+	}
+
+	.ks-banner__container {
+		position: relative;
+		@extend .container;
+		text-align: center;
+		z-index: 1;
+	}
+
+	.ks-banner__title {
+		margin-bottom: 0;
+	}
+}

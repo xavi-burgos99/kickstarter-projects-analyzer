@@ -1,0 +1,9 @@
+.ks-main {
+	min-height: calc(100dvh - #{$ks-header-height} - #{$ks-footer-height});
+}
+
+@include media-breakpoint-down(sm) {
+	.ks-main {
+		min-height: calc(100dvh - #{$ks-header-height} - #{$ks-footer-height-sm});
+	}
+}

@@ -18,7 +18,7 @@
 			--#{$prefix}btn-hover-color: var(--#{$prefix}emphasis-color);
 			--#{$prefix}btn-active-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.175);
 			--#{$prefix}btn-active-color: var(--#{$prefix}emphasis-color);
-			--#{$prefix}btn-focus-shadow-rgba: var(--#{$prefix}emphasis-color-rgb);
+			--#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}emphasis-color-rgb);
 		} @else if $color == "dark" {
 			@include button-variant(
 				rgba($dark, 0.75),
@@ -37,7 +37,7 @@
 			--#{$prefix}btn-hover-color: var(--#{$prefix}body-bg);
 			--#{$prefix}btn-active-bg: rgba(var(--#{$prefix}emphasis-color-rgb), 0.95);
 			--#{$prefix}btn-active-color: var(--#{$prefix}body-bg);
-			--#{$prefix}btn-focus-shadow-rgba: var(--#{$prefix}emphasis-color-rgb);
+			--#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}emphasis-color-rgb);
 		} @else {
 			@include button-variant(
 				rgba($value, 0.2),
@@ -53,7 +53,7 @@
 			--#{$prefix}btn-color: var(--#{$prefix}emphasis-color);
 			--#{$prefix}btn-hover-color: var(--#{$prefix}emphasis-color);
 			--#{$prefix}btn-active-color: var(--#{$prefix}emphasis-color);
-			--#{$prefix}btn-focus-shadow-rgba: #{to-rgb(mix($dark, $value, 33%))};
+			--#{$prefix}btn-focus-shadow-rgb: #{to-rgb(mix($dark, $value, 25%))};
 		}
 		border-width: 0;
 	}

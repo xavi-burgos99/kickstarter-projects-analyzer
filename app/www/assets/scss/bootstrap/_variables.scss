@@ -18,20 +18,13 @@ $headings-font-weight: 600 !default;
 $font-size-xs: 0.8rem !default;
 
 /* Border */
-$border-color: #f8f9fa !default;
+$border-color: #eee !default;
 $border-color-translucent: rgba(var(--bs-emphasis-color-rgb), 0.1) !default;
 $border-radius: 0.3rem !default;
 $border-radius-sm: 0.2rem !default;
 $border-radius-lg: 0.4rem !default;
 $border-radius-xl: 0.6rem !default;
 $focus-ring-width: 0.1275rem !default;
-
-/* Input */
-$input-bg: #fff !default;
-$form-check-input-indeterminate-bg-color: mix($input-bg, $blue, 75%) !default;
-$form-check-input-indeterminate-color: $blue !default;
-$form-floating-padding-y: 0.625rem !default;
-$form-floating-input-padding-t: 0.625rem !default;
 
 /* Button */
 $btn-focus-opacity: 0.1 !default;

@@ -3,4 +3,148 @@
 {% block title %}Prediction{% endblock %}
 
 {% block content %}
+
+<!-- Banner: start -->
+<div class="ks-banner" style="background-image: url('/assets/img/banner.webp');">
+	<div class="ks-banner__container">
+		<h1 class="ks-banner__title">Project prediction</h1>
+	</div>
+</div>
+<!-- Banner: end -->
+
+<!-- Content: start -->
+<section class="container text-center py-5">
+	<div class="py-4">
+		<p class="fs-5 pb-4">Fill out the form below to obtain a preliminary evaluation of the prospects for success or cancellation of your idea.</p>
+		<form>
+			<div class="row g-3 mb-4">
+				<div class="col-12 col-xl-6">
+					<div class="form-floating">
+						<input type="text" class="form-control" id="title" name="title" required value="My first project">
+						<script>document.getElementById('title').addEventListener('focus', function() { this.select(); }, { once: true });</script>
+						<label for="title">Title</label>
+					</div>
+				</div>
+				<div class="col-12 col-xl-6">
+					<div class="form-floating">
+						<select id="country" name="country" class="form-select" required>
+							<option selected disabled></option>
+							<option value="AT">Austria</option>
+							<option value="BE">Belgium</option>
+							<option value="DK">Denmark</option>
+							<option value="FI">Finland</option>
+							<option value="FR">France</option>
+							<option value="DE">Germany</option>
+							<option value="IE">Ireland</option>
+							<option value="IT">Italy</option>
+							<option value="LU">Luxembourg</option>
+							<option value="NL">Netherlands</option>
+							<option value="NO">Norway</option>
+							<option value="PT">Portugal</option>
+							<option value="ES">Spain</option>
+							<option value="SE">Sweden</option>
+							<option value="CH">Switzerland</option>
+							<option value="GB">United Kingdom</option>
+							<option value="US">United States</option>
+						</select>
+						<label for="country">Country</label>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-xl-3">
+					<div class="form-floating">
+						<select id="category" name="category" class="form-select" required>
+							<option selected disabled></option>
+							<option value="Art">Art</option>
+							<option value="Comic & Illustration">Comic & Illustration</option>
+							<option value="Design & Tech">Design & Tech</option>
+							<option value="Film">Film</option>
+							<option value="Food & Craft">Food & Craft</option>
+							<option value="Games">Games</option>
+							<option value="Music">Music</option>
+							<option value="Publishing">Publishing</option>
+						</select>
+						<label for="category">Category</label>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-xl-3">
+					<div class="form-floating">
+						<select id="subcategory" name="subcategory" class="form-select" required>
+							<option selected disabled></option>
+							<option value="Art">Art</option>
+							<option value="Comics">Comics</option>
+							<option value="Crafts">Crafts</option>
+							<option value="Dance">Dance</option>
+							<option value="Design">Design</option>
+							<option value="Fashion">Fashion</option>
+							<option value="Film & Video">Film & Video</option>
+							<option value="Food">Food</option>
+							<option value="Games">Games</option>
+							<option value="Journalism">Journalism</option>
+							<option value="Music">Music</option>
+							<option value="Photography">Photography</option>
+							<option value="Publishing">Publishing</option>
+							<option value="Technology">Technology</option>
+							<option value="Theater">Theater</option>
+						</select>
+						<label for="subcategory">Subcategory</label>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-xl-3">
+					<div class="input-group">
+						<div class="form-floating" style="flex: 1 1 auto;">
+							<input type="number" class="form-control" id="goal" name="goal" required min="0" max="100000000">
+							<label for="goal">Goal</label>
+						</div>
+						<div class="form-floating" style="flex: 0.5 0.5 auto;">
+							<select id="currency" name="currency" class="form-select" required>
+								<option value="USD" selected>USD</option>
+								<option value="EUR">EUR</option>
+								<option value="GBP">GBP</option>
+								<option value="CAD">CAD</option>
+								<option value="AUD">AUD</option>
+								<option value="SEK">SEK</option>
+								<option value="DKK">DKK</option>
+								<option value="NOK">NOK</option>
+								<option value="CHF">CHF</option>
+								<option value="MXN">MXN</option>
+								<option value="NZD">NZD</option>
+								<option value="SGD">SGD</option>
+								<option value="HKD">HKD</option>
+								<option value="JPY">JPY</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 col-xl-3">
+					<div class="form-floating">
+						<input type="date" class="form-control" id="deadline" name="deadline" required>
+						<label for="deadline">Deadline</label>
+						<script>
+							function setMinMaxDate() {
+								const input = document.getElementById('deadline');
+								if (!input) return;
+								const today = (new Date(new Date().setDate(new Date().getDate() + 2))).toISOString().split('T')[0];
+								const value = (new Date(new Date().setDate(new Date().getDate() + 31))).toISOString().split('T')[0];
+								const maxDate = (new Date(new Date().setDate(new Date().getDate() + 61))).toISOString().split('T')[0];
+								input.setAttribute('min', today);
+								input.setAttribute('max', maxDate);
+								input.setAttribute('value', value);
+							}
+							setMinMaxDate();
+						</script>
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary" style="--bs-btn-padding-x: 2rem; --bs-btn-padding-y: 0.625rem;">
+					<i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+					Get prediction
+				</button>
+			</div>
+		</form>
+	</div>
+</section>
+<!-- Content: end -->
+
+
 {% endblock %}
