@@ -10,11 +10,7 @@ import pp
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, f1_score
-from nltk import download
-from nltk.corpus import stopwords
-from nltk.stem import LancasterStemmer
-from nltk.tokenize import word_tokenize
+from sklearn.metrics import accuracy_score, f1_score
 
 # Set up the dataset
 dataset = {
@@ -128,14 +124,16 @@ new_df = new_df.drop(columns = ['deadline'])
 # Get the "cancelled" column from the "state" column
 new_df['cancelled'] = new_df.apply(lambda x: 1 if x['state'] == 'canceled' else 0, axis = 1)
 
-# Get the "success" column from the "state" column
-new_df['successful'] = new_df.apply(lambda x: 1 if x['state'] == 'successful' else 0, axis = 1)
-
 # Remove the "state" column
 new_df = new_df.drop(columns = ['state'])
 
 # Set price ranges to get more information
 price_ranges = [0, 100, 500, 1000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000, 5000000, 10000000]
+
+# Save the "price_ranges" list into a "data/json/price_ranges.json" file
+print("Saving \"price_ranges.json\" file...")
+with open('../data/json/price_ranges.json', 'w') as file:
+	json.dump(price_ranges, file)
 
 # Define the function to get the price range
 def get_price_range(x):
@@ -156,6 +154,11 @@ new_df = new_df.drop(columns = ['usd_pledged_real', 'usd_goal_real'])
 # Set backers ranges to get more information
 backers_ranges = [0, 1, 2, 3, 5, 7, 10, 14, 21, 30, 45, 60, 90, 120, 150, 200, 300, 500, 1000, 5000, 10000]
 
+# Save the "backers_ranges" list into a "data/json/backers_ranges.json" file
+print("Saving \"backers_ranges.json\" file...")
+with open('../data/json/backers_ranges.json', 'w') as file:
+	json.dump(backers_ranges, file)
+
 # Define the function to get the backers range
 def get_backers_range(x):
 	for i in range(len(backers_ranges)):
@@ -166,26 +169,12 @@ def get_backers_range(x):
 # Get the "backers" column from the "backers" column
 new_df['backers'] = new_df.apply(lambda x: get_backers_range(x['backers']), axis = 1)
 
-# Download stopwords and punkt
-download('stopwords')
-download('punkt')
-
-# Initialize the LancasterStemmer
-stemmer = LancasterStemmer()
-
-# Initialize the stopwords
-stop_words = set(stopwords.words('english'))
-
-# Define the function to clean the text
+# Define the function to get the keywords
+stemmer = pp.get_stemmer()
+stop_words = pp.get_stopwords()
 def get_keywords(text):
-	text = text.lower()	# Lower the text
-	text = re.sub(r'[^\w\s]', '', text)	# Remove punctuation
-	text = re.sub(r'\d+', '', text)	# Remove numbers
-	text = word_tokenize(text)	# Tokenize the text
-	text = [word for word in text if word not in stop_words]	# Remove stopwords
-	text = [stemmer.stem(word) for word in text]	# Stem the words
-	text = ' '.join(text)	# Join the words
-	return text
+  text = pp.get_keywords(text, stemmer, stop_words)
+  return text
 
 # Apply the function to the "info" column to get the "keywords" column
 timestart = time.time()
@@ -203,6 +192,15 @@ timestart = time.time()
 print("Creating the bag of words...")
 vectorizer = CountVectorizer(max_features = 1000)
 bag_of_words = vectorizer.fit_transform(new_df['keywords'])
+
+# Get the keywords list
+keywords = vectorizer.get_feature_names_out()
+keywords = keywords.tolist()
+
+# Save the "keywords" list into a "data/json/keywords.json" file
+print("Saving \"keywords.json\" file...")
+with open('../data/json/keywords.json', 'w') as file:
+	json.dump(keywords, file)
 
 # Convert the bag of words into a DataFrame
 bow_df = pd.DataFrame(bag_of_words.toarray(), columns=vectorizer.get_feature_names_out())
