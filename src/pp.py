@@ -1,3 +1,5 @@
+import re
+
 """Preprocessing module"""
 
 import src.eda as eda
@@ -26,3 +28,18 @@ def remove_duplicates(df):
 	"""
 	return df.drop_duplicates()
 
+def to_keywords(text):
+	"""Convert a text to a list of keywords
+
+	Args:
+		text (str): The text to convert
+
+	Returns:
+		list: The list of keywords
+	"""
+	text = text.lower()
+	text = re.sub(r'[^a-z0-9\s]', '', text)
+	text = re.sub(r'\s+', ' ', text).strip()
+	words = [word for word in text.split(' ') if len(word) > 3]
+	text = ', '.join(words)
+	return text
