@@ -2,7 +2,7 @@ import re
 
 """Preprocessing module"""
 
-import src.eda as eda
+import eda
 
 def remove_nans(df, threshold=0.5):
 	"""Remove columns with NaN count respect to the dataframe total count greater than a threshold
