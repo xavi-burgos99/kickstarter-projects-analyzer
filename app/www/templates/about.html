@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+<!-- Banner: start -->
+<div class="ks-banner" style="background-image: url('/assets/img/banner.webp');">
+	<div class="ks-banner__container">
+		<h1 class="ks-banner__title">About</h1>
+	</div>
+</div>
+<!-- Banner: end -->
+
+<!-- Article: start -->
+<article class="py-5">
+	
+	<section class="container mb-5">
+		<h2>What is Kickstarter?</h2>
+		<p>Kickstarter is a crowdfunding platform that helps bring creative projects to life. It is a place where creators and backers come together to fund projects that interest them.</p>
+		<p>The official Kickstarter website can be found on <a href="https://www.kickstarter.com/" target="_blank">kickstarter.com</a>, this application is only an unofficial tool to help you find if your project is likely to be successful or not.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h2>How does it work?</h2>
+		<p>The application uses a machine learning model to predict a pledge amount range for a given project. The model was trained on a dataset of more than 350,000 projects uploaded to Kickstarter until 2018.</p>
+		<p>It is important to note that the model is not perfect and that the predictions are only estimates. The model is based on the data available until 2018, so it does not take into account the recent changes in the Kickstarter platform.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h2>How to use it?</h2>
+		<p>First, you need to run the <code>src/main.py</code> script to train the model. The script will generate the required files in the <code>src/data</code> folder. This may take a few minutes (about 3 - 10 minutes depending on your computer).</p>
+		<p>Simply enter the details of your project in the form on the <a href="/templates/prediction.html">Prediction</a> page and click on the "Get prediction" button. The application will then display the estimated pledge amount range for your project.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h2>Where is the data from?</h2>
+		<p>The data used to train the model was obtained from the <a href="https://www.kaggle.com/kemical/kickstarter-projects" target="_blank">Kickstarter Projects</a> Kaggle dataset from 2018.</p>
+		<p>The dataset contains information about more than 350,000 projects uploaded to Kickstarter and offered to the public until 2018, so the model is based on original Kickstarter data.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h2>What is the model?</h2>
+		<p>The model is a <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" target="_blank">Random Forest Classifier</a>. This model was chosen because it is a very powerful for classification tasks. The prediction tool needs to classify projects into one of the different pledge amount ranges, by a given fields of the project, so it is a perfect choice.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h2>Is the data preprocessed?</h2>
+		<p>Yes, the data is preprocessed before training the model. The preprocessing steps are the following:</p>
+		<ol>
+			<li>Drop the rows with missing values.</li>
+			<li>Drop the "ID" column (no useful information).</li>
+			<li>Convert the "currency" column to a numerical value.</li>
+			<li>Drop the "goal", "pledged" and "usd pledged" columns (redundant information, "usd_pledged_real" and "usd_goal_real" provides better information, converted using Fixer.io API).</li>
+			<li>Convert the "category" column to a numerical value.</li>
+			<li>Convert the "main_category" column to a numerical value.</li>
+			<li>Convert the "country" column to a numerical value.</li>
+			<li>Get the "days" column from the "deadline" and "launched" columns.</li>
+			<li>Drop the "deadline" column (redundant information).</li>
+			<li>Create and apply days ranges to the "days" column.</li>
+			<li>Replace the "launched" column with the month of the launch.</li>
+			<li>Get the "cancelled" column from the "state" column.</li>
+			<li>Drop the "state" column (redundant information).</li>
+			<li>Create and apply price ranges to the "usd_pledged_real" and "usd_goal_real" columns.</li>
+			<li>Rename the "usd_pledged_real" column to "pledge" (shorter name).</li>
+			<li>Rename the "usd_goal_real" column to "goal" (shorter name).</li>
+			<li>Create and apply backers ranges to the "backers" column.</li>
+			<li>Get the "keywords" from the "name" column (using the NLTK library).</li>
+			<li>Drop the "name" column (no useful information).</li>
+			<li>Get a "keywords" dataframe from the generated bag of words and the "keywords" column.</li>
+			<li>Combine the actual dataframe with the "keywords" dataframe.</li>
+		</ol>
+
+		<p>The data before being preprocessed:</p>
+		<div class="table-responsive">
+			<table class="table text-nowrap">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>name</th>
+						<th>category</th>
+						<th>main_category</th>
+						<th>currency</th>
+						<th>deadline</th>
+						<th>goal</th>
+						<th>launched</th>
+						<th>pledged</th>
+						<th>state</th>
+						<th>backers</th>
+						<th>country</th>
+						<th>usd pledged</th>
+						<th>usd_pledged_real</th>
+						<th>usd_goal_real</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1000002330</td>
+						<td>The Songs of Adelaide &amp; Abullah</td>
+						<td>Poetry</td>
+						<td>Publishing</td>
+						<td>GBP</td>
+						<td>2015-10-09</td>
+						<td>1000.00</td>
+						<td>2015-08-11 12:12:28</td>
+						<td>0.00</td>
+						<td>failed</td>
+						<td>0</td>
+						<td>GB</td>
+						<td>0.00</td>
+						<td>0.00</td>
+						<td>1533.95</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<p>The data after being preprocessed:</p>
+		<div class="table-responsive">
+			<table class="table text-nowrap">
+				<thead>
+					<tr>
+						<th>category</th>
+						<th>main_category</th>
+						<th>currency</th>
+						<th>launched</th>
+						<th>backers</th>
+						<th>country</th>
+						<th>days</th>
+						<th>cancelled</th>
+						<th>pledged</th>
+						<th>goal</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>108</td>
+						<td>12</td>
+						<td>5</td>
+						<td>8</td>
+						<td>0</td>
+						<td>9</td>
+						<td>11</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="container mb-5">
+		<h2>What is the reliability of the model?</h2>
+		<p>There is a page dedicated to the reliability of the model, you can find it <a href="/templates/reliability.html">here</a>.</p>
+	</section>
+
+</article>
+<!-- Article: end -->
+
+{% endblock %}
