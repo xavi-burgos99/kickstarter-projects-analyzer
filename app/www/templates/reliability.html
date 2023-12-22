@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block title %}Reliability{% endblock %}
+
+{% block content %}
+
+<!-- Banner: start -->
+<div class="ks-banner" style="background-image: url('/assets/img/banner.webp');">
+	<div class="ks-banner__container">
+		<h1 class="ks-banner__title">Reliability</h1>
+	</div>
+</div>
+<!-- Banner: end -->
+
+<!-- Article: start -->
+<article class="py-5">
+	
+	<section class="container mb-5">
+		<p>There is a page that explains all the details about the project and how it works. You can find it <a href="/templates/about.html">here</a>.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h2>Metrics and evaluation</h2>
+		<p>The metrics take into account for the application are:</p>
+		<ul>
+			<li>
+				<strong>Accuracy</strong>:
+				The accuracy of the model is the percentage of correct predictions. This is the most intuitive performance measure and it is simply a ratio of correctly predicted observation to the total observations. It is not the most reliable performance measure if the dataset is unbalanced.
+			</li>
+			<li>
+				<strong>F1 Score</strong>:
+				The F1 score is the harmonic mean of precision and recall. It is a better measure than accuracy if the dataset is unbalanced.
+			</li>
+		</ul>
+		<p>The <b>confusion matrix</b> and the <b>classification report</b> are also used to evaluate the model and get more information about the performance of the model.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h4>Accuracy</h4>
+		<p>The accuracy of the model is <span class="font-monospace text-primary">0.67</span>. This means that the model is able to predict correctly the 67% of the cases.</p>
+		<p>This value is not very high, but we have to take into account that the type of task that the model is trying to solve is very difficult and it is possible that the dataset is not big enough to train a model that can predict correctly the 100% of the cases. To make sure that a Kickstarter campaign is going to be successful or not, there are many factors that have to be taken into account, and the dataset that we have used only contains a few of them.</p>
+	</section>
+	
+	<section class="container mb-5">
+		<h4>F1 Score</h4>
+		<p>The F1 score of the model is <span class="font-monospace text-primary">0.65</span>. This means that the model is able to predict correctly the 65% of the cases.</p>
+		<p>As we have said before, this value is not very high, but we have to take into account the same factors that we have talked about in the previous section.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h4>Confusion matrix</h4>
+		<p>The confusion matrix is a table that is often used to describe the performance of a classification model on a set of test data for which the true values are known. The confusion matrix of the model is the following:</p>
+		<table class="table table-bordered font-monospace">
+			<thead>
+				<tr><th></th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th></tr>
+			</thead>
+			<tbody>
+				<tr><th><b>0</b></th><td>10281</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>1</b></th><td>0</td><td>12614</td><td>1667</td><td>34</td><td>41</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>2</b></th><td>0</td><td>2958</td><td>6241</td><td>726</td><td>981</td><td>14</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>3</b></th><td>0</td><td>298</td><td>1864</td><td>1229</td><td>2484</td><td>33</td><td>10</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>4</b></th><td>0</td><td>185</td><td>1076</td><td>775</td><td>13441</td><td>932</td><td>279</td><td>55</td><td>4</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>5</b></th><td>0</td><td>18</td><td>68</td><td>39</td><td>2816</td><td>2419</td><td>854</td><td>191</td><td>14</td><td>2</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>6</b></th><td>0</td><td>14</td><td>24</td><td>12</td><td>812</td><td>1149</td><td>2227</td><td>591</td><td>24</td><td>4</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>7</b></th><td>0</td><td>2</td><td>5</td><td>2</td><td>323</td><td>177</td><td>824</td><td>1798</td><td>163</td><td>27</td><td>8</td><td>2</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>8</b></th><td>0</td><td>0</td><td>1</td><td>0</td><td>50</td><td>45</td><td>113</td><td>599</td><td>231</td><td>63</td><td>14</td><td>4</td><td>1</td><td>0</td><td>0</td></tr>
+				<tr><th><b>9</b></th><td>0</td><td>0</td><td>2</td><td>1</td><td>19</td><td>7</td><td>36</td><td>216</td><td>157</td><td>100</td><td>42</td><td>7</td><td>2</td><td>0</td><td>0</td></tr>
+				<tr><th><b>10</b></th><td>0</td><td>0</td><td>0</td><td>0</td><td>6</td><td>4</td><td>7</td><td>90</td><td>62</td><td>65</td><td>41</td><td>8</td><td>7</td><td>0</td><td>1</td></tr>
+				<tr><th><b>11</b></th><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0</td><td>4</td><td>15</td><td>21</td><td>11</td><td>15</td><td>7</td><td>5</td><td>0</td><td>0</td></tr>
+				<tr><th><b>12</b></th><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td><td>0</td><td>0</td><td>8</td><td>12</td><td>9</td><td>8</td><td>6</td><td>5</td><td>0</td><td>0</td></tr>
+				<tr><th><b>13</b></th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+				<tr><th><b>14</b></th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+			</tbody>
+		</table>
+	
+		<p>As we can see, the model is able to predict correctly the 10281 cases at the first class. The diagonal indicates the number of correct predictions for each class. The rest of the values indicate the number of incorrect predictions for each class.</p>
+	</section>
+
+	<section class="container mb-5">
+		<h4>Classification report</h4>
+		<p>The classification report of the model is the following:</p>
+		<table class="table table-bordered">
+			<thead>
+				<tr><th></th><th>precision</th><th>recall</th><th>f1-score</th><th>support</th></tr>
+			</thead>
+			<tbody class="font-monospace">
+				<tr><th>0</th><td>1.000000</td><td>1.000000</td><td>1.000000</td><td>10281.000000</td></tr>
+				<tr><th>1</th><td>0.784014</td><td>0.878535</td><td>0.828587</td><td>14358.000000</td></tr>
+				<tr><th>2</th><td>0.570058</td><td>0.571520</td><td>0.570788</td><td>10920.000000</td></tr>
+				<tr><th>3</th><td>0.436125</td><td>0.207672</td><td>0.281364</td><td>5918.000000</td></tr>
+				<tr><th>4</th><td>0.640688</td><td>0.802544</td><td>0.712540</td><td>16748.000000</td></tr>
+				<tr><th>5</th><td>0.505961</td><td>0.376674</td><td>0.431849</td><td>6422.000000</td></tr>
+				<tr><th>6</th><td>0.511484</td><td>0.458419</td><td>0.483500</td><td>4858.000000</td></tr>
+				<tr><th>7</th><td>0.504489</td><td>0.539778</td><td>0.521537</td><td>3331.000000</td></tr>
+				<tr><th>8</th><td>0.335269</td><td>0.206066</td><td>0.255249</td><td>1121.000000</td></tr>
+				<tr><th>9</th><td>0.352113</td><td>0.169779</td><td>0.229095</td><td>589.000000</td></tr>
+				<tr><th>10</th><td>0.315385</td><td>0.140893</td><td>0.194774</td><td>291.000000</td></tr>
+				<tr><th>11</th><td>0.205882</td><td>0.087500</td><td>0.122807</td><td>80.000000</td></tr>
+				<tr><th>12</th><td>0.250000</td><td>0.096154</td><td>0.138889</td><td>52.000000</td></tr>
+				<tr><th>13</th><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>2.000000</td></tr>
+				<tr><th>14</th><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>1.000000</td></tr>
+			</tbody>
+			</tfoot>
+				<tr><th>accuracy</th><td class="font-monospace">0.675372</td><td class="font-monospace">0.675372</td><td class="font-monospace">0.675372</td><td class="font-monospace">0.675372</td></tr>
+				<tr><th>macro avg</th><td class="font-monospace">0.427431</td><td class="font-monospace">0.369036</td><td class="font-monospace">0.384732</td><td class="font-monospace">74972.000000</td></tr>
+				<tr><th>weighted avg</th><td class="font-monospace">0.656154</td><td class="font-monospace">0.675372</td><td class="font-monospace">0.658430</td><td class="font-monospace">74972.000000</td></tr>
+			</tfoot>
+		</table>
+		<p>As we can see, the model is able to predict correctly the 100% of the cases at the first class. The rest of the classes have a lower precision, recall and f1-score. This is because the dataset is unbalanced and the model is not able to learn correctly the patterns of the minority classes.</p>
+	</section>
+
+</article>
+<!-- Article: end -->
+
+{% endblock %}

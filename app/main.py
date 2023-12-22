@@ -25,4 +25,4 @@ def predict(name, country, days, main_category, category, goal, currency, backer
 	return pr.predict(name, main_category, category, currency, country, launched, days, goal, backers)
 
 eel.init('www')
-eel.start('templates/index.html', size=(1000, 600), port=8800, jinja_templates='templates')
+eel.start('templates/index.html', size=(1100, 800), port=8800, jinja_templates='templates')
