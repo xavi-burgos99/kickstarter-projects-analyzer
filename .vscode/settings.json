@@ -1,7 +1,0 @@
-{
-	"liveSassCompile.settings.excludeList": [
-		"/**/node_modules/**",
-		"/.vscode/**",
-		"/**/libs/**"
-	]
-}
