@@ -24,7 +24,7 @@ python main.py
 
 ## How is the analysis organized?
 
-The analysis is organized in 5 parts:
+The analysis is organized in 4 parts:
 * **Data analysis**: This part is focused on the analysis of the data, and the selection of the most relevant features.
 * **Preprocessing**: This part is focused on the preprocessing of the data, in order to make it suitable for the machine learning algorithms.
 * **Metric selection**: This part is focused on the selection of the most suitable metric for the problem.
@@ -33,7 +33,7 @@ The analysis is organized in 5 parts:
 
 ## How to run the code?
 
-The code is written in Python 3.11.6, and it is contained in the file `analysis.py` and `src/` folder. To run the code, you need to execute the following commands in the terminal:
+The code is written in Python 3.11.6, and it is contained in the file `analysis.ipynb` and `src/` folder. To run the main code for generate the required files, you need to execute the following commands in the terminal:
 
 #### MacOS/Linux:
 
@@ -55,14 +55,15 @@ python main.py
 
 The project is structured in the following way:
 
-* `analysis.py`: This file contains the code of the analysis.
+* `app`: This folder contains the source code of the local application.
 * `data`: This folder contains the data used in the analysis and predictions.
 * `src`: This folder contains the source code of the analysis and predictions.
+* `analysis.ipynb`: This file contains the analysis and predictions.
 
 
 # Acknowledgments
 
-* [**Kaggle**](https://www.kaggle.com/): The data used in this analysis is from Kaggle.
+* [**Kaggle**](https://www.kaggle.com/): The data used in this analysis was obtained from Kaggle.
 * [**UAB**](https://www.uab.cat/): This analysis was done as a project for the APC subject of the UAB.
 * [**Marc Borras Camarasa**](https://www.linkedin.com/in/marc-borr%C3%A0s-camarasa-509485121): Teacher of the APC subject of the UAB. 
 
